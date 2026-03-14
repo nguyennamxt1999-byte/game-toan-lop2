@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐰 Thỏ ơi – Hành trình tìm kho báu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+            background: #87CEEB
+        }
+
+        .scr {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0
+        }
+
+        .scr.on {
+            display: flex
+        }
+
+        /* ===== INTRO ===== */
+        #intro {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #87CEEB 0%, #B8E6B8 100%);
+            z-index: 100
+        }
+
+        .icard {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, .96);
+            border-radius: 16px;
+            padding: 42px 56px;
+            text-align: center;
+            max-width: 900px;
+            width: 96%;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, .15);
+            animation: pop .7s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(.7) translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        .ibny {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 14px;
+            animation: bob 2s ease-in-out infinite
+        }
+
+        .ibny img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-12px)
+            }
+        }
+
+        .ittl {
+            font-size: 2.8em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF6B9D, #4ECDC4, #FFD93D);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: grd 3s ease infinite;
+            margin-bottom: 8px
+        }
+
+        @keyframes grd {
+
+            0%,
+            100% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+        }
+
+        .isub {
+            color: #888;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .isty {
+            background: linear-gradient(135deg, #FFF9E6, #FFF3CD);
+            border: 3px dashed #FFD93D;
+            border-radius: 16px;
+            padding: 22px 26px;
+            text-align: left;
+            font-size: 1.25em;
+            color: #666;
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 20px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.15em;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all .3s cubic-bezier(.34, 1.56, .64, 1)
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05)
+        }
+
+        .btn:active {
+            transform: scale(.96)
+        }
+
+        .btn-go {
+            background: linear-gradient(135deg, #FF6B9D, #FF8A5C);
+            color: #fff;
+            box-shadow: 0 5px 18px rgba(255, 107, 157, .4), 0 3px 0 #d9527a;
+            font-size: 1.7em;
+            padding: 22px 60px
+        }
+
+        /* ===== GAME ===== */
+        #game {
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden
+        }
+
+        /* --- MAP AREA (bottom) --- */
+        .map {
+            position: relative;
+            width: 100%;
+            flex: 1 1 auto;
+            background: #87CEEB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .map-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .map-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Bunny on map */
+        .bny {
+            position: absolute;
+            z-index: 20;
+            width: 370px;
+            height: 370px;
+            transform: translate(-50%, -75%);
+            transition: left 1.2s cubic-bezier(.34, 1.56, .64, 1), top 1.2s cubic-bezier(.34, 1.56, .64, 1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .25));
+        }
+
+        .bny img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain
+        }
+
+        .bny.hop {
+            animation: hopA .4s ease-in-out 3
+        }
+
+        @keyframes hopA {
+
+            0%,
+            100% {
+                transform: translate(-50%, -75%) scaleY(1)
+            }
+
+            30% {
+                transform: translate(-50%, -105%) scaleY(1.1) scaleX(.95)
+            }
+
+            60% {
+                transform: translate(-50%, -75%) scaleY(.9) scaleX(1.05)
+            }
+        }
+
+
+
+        /* --- QUESTION AREA (top) --- */
+        .qarea {
+            flex: 0 0 auto;
+            background: #fff;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+            padding: 20px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 50;
+        }
+
+
+        .qc {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center
+        }
+
+        .qtx {
+            font-size: 4.5em;
+            font-weight: 900;
+            color: #333;
+            line-height: 1.3;
+            text-align: center
+        }
+
+        .show-ans-btn {
+            padding: 18px 60px;
+            border: 3px solid transparent;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 4em;
+            font-weight: 800;
+            cursor: pointer;
+            background: linear-gradient(135deg, #4ECDC4, #44BFA5);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(78, 205, 196, .35);
+            text-align: center;
+            transition: background .3s, color .3s, border-color .3s, box-shadow .3s
+        }
+
+        .show-ans-btn:hover:not(.revealed) {
+            box-shadow: 0 6px 20px rgba(78, 205, 196, .45)
+        }
+
+        .show-ans-btn.revealed {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #2E7D32;
+            border-color: #66BB6A;
+            cursor: default;
+            box-shadow: none;
+            animation: revealPulse .6s ease-out
+        }
+
+        @keyframes revealPulse {
+            0% {
+                transform: scale(1)
+            }
+
+            30% {
+                transform: scale(1.15)
+            }
+
+            60% {
+                transform: scale(0.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        .show-ans-btn.revealed:hover {
+            box-shadow: none
+        }
+
+        .os {
+            display: flex;
+            flex-direction: column;
+            gap: 5px
+        }
+
+        .ob {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 3px solid #e8e8e8;
+            border-radius: 14px;
+            background: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1em;
+            font-weight: 800;
+            color: #444;
+            cursor: pointer;
+            transition: all .25s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .ob:hover:not(.dis) {
+            border-color: #4ECDC4;
+            background: #f0fffe;
+            transform: translateX(5px) scale(1.02)
+        }
+
+        .ol {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .75em;
+            font-weight: 900;
+            flex-shrink: 0
+        }
+
+        .ob:nth-child(1) .ol {
+            background: #FFE0E6;
+            color: #FF6B9D
+        }
+
+        .ob:nth-child(2) .ol {
+            background: #E0F7FA;
+            color: #00ACC1
+        }
+
+        .ob:nth-child(3) .ol {
+            background: #FFF9C4;
+            color: #F9A825
+        }
+
+        .ob.ok {
+            border-color: #66BB6A;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #2E7D32;
+            transform: scale(1.03)
+        }
+
+        .ob.ok .ol {
+            background: #66BB6A;
+            color: #fff
+        }
+
+        .ob.no {
+            border-color: #EF5350;
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            color: #C62828;
+            animation: shk .4s
+        }
+
+        .ob.dis {
+            pointer-events: none
+        }
+
+        .ob.dis:not(.ok):not(.no) {
+            opacity: .4
+        }
+
+        @keyframes shk {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25% {
+                transform: translateX(-8px)
+            }
+
+            50% {
+                transform: translateX(8px)
+            }
+
+            75% {
+                transform: translateX(-4px)
+            }
+        }
+
+        .fb {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 14px;
+            text-align: center;
+            font-weight: 800;
+            font-size: .9em;
+            transform: translateY(100%);
+            transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+            z-index: 60
+        }
+
+        .fb.show {
+            transform: translateY(0)
+        }
+
+        .fb.gy {
+            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+            color: #2E7D32
+        }
+
+        .fb.ny {
+            background: linear-gradient(135deg, #FFCDD2, #EF9A9A);
+            color: #C62828
+        }
+
+
+
+        /* ===== VICTORY ===== */
+        #vic {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+            z-index: 200
+        }
+
+        .vc {
+            background: rgba(255, 255, 255, .96);
+            border-radius: 40px;
+            padding: 60px 60px;
+            text-align: center;
+            max-width: 900px;
+            width: 92%;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, .3);
+            animation: pop .7s cubic-bezier(.34, 1.56, .64, 1);
+            position: relative;
+            z-index: 210
+        }
+
+        .vtr {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 12px
+        }
+
+        .vtr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: bob 2s ease-in-out infinite
+        }
+
+        .vttl {
+            font-size: 2.6em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FFA000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            white-space: nowrap
+        }
+
+        .vs {
+            font-size: 56px;
+            letter-spacing: 12px;
+            margin: 10px 0 14px;
+            animation: pop .8s .5s both
+        }
+
+        .vbn {
+            width: 90px;
+            height: 90px;
+            margin: 6px auto
+        }
+
+        .vbn img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: bob .5s ease-in-out infinite
+        }
+
+        .btn-re {
+            background: linear-gradient(135deg, #4ECDC4, #44BFA5);
+            color: #fff;
+            box-shadow: 0 5px 18px rgba(78, 205, 196, .4), 0 3px 0 #3aaa9e;
+            margin-top: 12px;
+            font-size: 1.5em;
+            padding: 18px 52px
+        }
+
+        .fw {
+            position: fixed;
+            pointer-events: none;
+            z-index: 205
+        }
+
+        /* Responsive */
+        @media(max-width:600px) {
+            .icard {
+                padding: 20px
+            }
+
+            .ittl {
+                font-size: 1.3em
+            }
+
+            .ibny {
+                width: 100px;
+                height: 100px
+            }
+
+            .bny {
+                width: 160px;
+                height: 160px
+            }
+
+            .qarea {
+                padding: 14px 16px
+            }
+
+            .qtx {
+                font-size: 2em
+            }
+
+            .ans-box {
+                font-size: 1.5em;
+                padding: 10px 24px
+            }
+
+            .show-ans-btn {
+                font-size: 1.15em;
+                padding: 12px 36px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== INTRO ===== -->
+    <div class="scr on" id="intro">
+        <div class="icard">
+            <div class="ibny"><img src="bunny_stand.png" alt="Thỏ trắng"></div>
+            <h1 class="ittl">Thỏ ơi <br>Hành trình tìm kho báu</h1>
+            <p class="isub">Cùng Thỏ trắng phiêu lưu nào! 🌟</p>
+            <div class="isty">
+                📖 Thỏ trắng nghe nói có một <strong>kho báu bí ẩn</strong> nằm sâu trong khu rừng cổ tích!<br><br>
+                Trên đường đi, Thỏ phải vượt qua <strong>5 chướng ngại vật</strong>. Các bạn giúp Thỏ trả lời đúng câu
+                hỏi về các đơn vị đo độ dài <strong> mét, đề-xi-mét</strong> nhé!<br><br>
+                🐰 <em>"Các bạn ơi, giúp mình với nhé!"</em>
+            </div>
+            <button class="btn btn-go" onclick="startGame()">🚀 Lên đường thôi!</button>
+        </div>
+    </div>
+
+    <!-- ===== GAME ===== -->
+    <div class="scr" id="game">
+        <!-- QUESTION TOP -->
+        <div class="qarea" id="qArea">
+            <div class="qc" id="qC">
+                <div class="qtx" id="qTx"></div>
+                <button class="show-ans-btn" id="showAnsBtn" onclick="showAnswers()">Hiển thị đáp án</button>
+            </div>
+            <div class="fb" id="fB"></div>
+        </div>
+
+        <!-- MAP BOTTOM -->
+        <div class="map" id="mapArea">
+            <div class="map-wrap">
+                <img src="background.jpg" alt="Bản đồ phiêu lưu" class="map-img" id="mapImg">
+                <div class="map-overlay" id="mapOv">
+                    <div class="bny" id="bunny"><img id="bImg" src="bunny_stand.png" alt="Thỏ"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VICTORY ===== -->
+    <div class="scr" id="vic">
+        <div class="vc">
+            <div class="vtr"><img src="bunny_victory.png" alt="Thỏ ôm kho báu"></div>
+            <h2 class="vttl">🎉 ĐÃ TÌM THẤY KHO BÁU!</h2>
+            <p style="font-size:1.8em;font-weight:800;color:#666;margin:12px 0;white-space:nowrap">🐰 <em>"Cảm ơn các
+                    bạn! Chúng ta làm được rồi!"</em></p>
+            <button class="btn btn-re" onclick="replayGame()">🔄 Chơi lại</button>
+        </div>
+    </div>
+
+    <p style="position:fixed;top:12px;right:16px;font-size:.85em;color:rgba(0,0,0,.4);font-weight:600;z-index:9999">Tác giả: Nguyễn Thị Khánh Bình</p>
+
+    <script>
+        /* ===== DATA ===== */
+        const QS = [
+            { id: 1, title: 'Giúp Thỏ vượt qua cầu gỗ!', text: '1 dm bằng bao nhiêu cm?', il: 'ruler', opts: [{ l: '5 cm', c: false }, { l: '10 cm', c: true }, { l: '100 cm', c: false }] },
+            { id: 2, title: 'Giúp Thỏ nhảy qua suối nước!', text: '5 dm + 8 dm = ?', il: 'wood', opts: [{ l: '11 dm', c: false }, { l: '12 dm', c: false }, { l: '13 dm', c: true }] },
+            { id: 3, title: 'Giúp Thỏ leo qua tảng đá!', text: '1 m bằng bao nhiêu dm?', il: 'rope', opts: [{ l: '10 dm', c: true }, { l: '5 dm', c: false }, { l: '100 dm', c: false }] },
+            { id: 4, title: 'Giúp Thỏ mở cổng cổ tích!', text: '65 m − 30 m = ?', il: 'road', opts: [{ l: '25 m', c: false }, { l: '35 m', c: true }, { l: '45 m', c: false }] },
+            { id: 5, title: 'Giúp Thỏ bước qua cổng cổ tích!', text: '100 cm bằng bao nhiêu m?', il: 'gate', opts: [{ l: '10 m', c: false }, { l: '1 m', c: true }, { l: '1 dm', c: false }] }
+        ];
+
+        /* Waypoint positions as % of the map image
+           Matched to Gemini-generated map landmarks (2752x1536) */
+        const WP = [
+            { l: 18, t: 92 },   // Xuất phát (on brown path, bottom-left)
+            { l: 35, t: 74 },  // Cầu Gỗ (on the bridge)
+            { l: 48, t: 75 },  // Tảng đá (on brown path near rock)
+            { l: 62, t: 70 },  // Suối nước (on stepping stones)
+            { l: 77, t: 60 },  // Cổng cổ tích (on path near archway)
+            { l: 84, t: 75 },  // Qua cổng cổ tích (after passing the gate)
+            { l: 80, t: 87 }   // Kho báu (near treasure chest)
+        ];
+
+        let step = 0, ans = false;
+
+        /* ===== SOUND ===== */
+        const AC = window.AudioContext || window.webkitAudioContext; let ax;
+        function ea() { if (!ax) ax = new AC() }
+        function tn(f, d, t = 'sine', v = .12) { ea(); const o = ax.createOscillator(), g = ax.createGain(); o.connect(g); g.connect(ax.destination); o.type = t; o.frequency.setValueAtTime(f, ax.currentTime); g.gain.setValueAtTime(v, ax.currentTime); g.gain.exponentialRampToValueAtTime(.001, ax.currentTime + d); o.start(); o.stop(ax.currentTime + d) }
+        function sOk() { tn(523, .12); setTimeout(() => tn(659, .12), 80); setTimeout(() => tn(784, .2), 160) }
+        function sNo() { tn(300, .2, 'triangle', .08); setTimeout(() => tn(250, .25, 'triangle', .08), 120) }
+        function sHop() { tn(400, .06, 'sine', .07); setTimeout(() => tn(600, .06, 'sine', .07), 60); setTimeout(() => tn(800, .08, 'sine', .07), 120) }
+        function sWin() { [523, 587, 659, 784, 880, 1047].forEach((n, i) => setTimeout(() => tn(n, .25), i * 100)); setTimeout(() => { tn(1047, .4); tn(784, .4, 'sine', .06) }, 700) }
+        function sReveal() {
+            ea();
+            const melody = [523, 659, 784, 1047, 784, 1047];
+            melody.forEach((f, i) => setTimeout(() => tn(f, .18, 'sine', .1), i * 70));
+            setTimeout(() => { tn(1047, .3, 'sine', .08); tn(784, .3, 'triangle', .05) }, melody.length * 70);
+        }
+
+        /* ===== BACKGROUND MUSIC ===== */
+        let bgNodes = [], bgPlaying = false, bgTimer = null;
+        function startBgMusic() {
+            if (bgPlaying) return;
+            ea(); bgPlaying = true;
+            // Fun chiptune-style melody (happy, bouncy)
+            const melody = [
+                659, 659, 0, 659, 0, 523, 659, 0, 784, 0, 0, 0, 392, 0, 0, 0,
+                523, 0, 0, 392, 0, 0, 330, 0, 0, 440, 0, 494, 0, 466, 440, 0,
+                392, 659, 0, 784, 880, 0, 698, 784, 0, 659, 0, 523, 587, 494, 0, 0,
+                523, 0, 0, 392, 0, 0, 330, 0, 0, 440, 0, 494, 0, 466, 440, 0
+            ];
+            // Bass accompaniment
+            const bass = [
+                131, 0, 131, 0, 165, 0, 165, 0, 196, 0, 196, 0, 131, 0, 131, 0,
+                175, 0, 175, 0, 131, 0, 131, 0, 147, 0, 147, 0, 165, 0, 165, 0,
+                131, 0, 131, 0, 165, 0, 165, 0, 175, 0, 175, 0, 131, 0, 131, 0,
+                175, 0, 175, 0, 131, 0, 131, 0, 147, 0, 147, 0, 165, 0, 165, 0
+            ];
+            let idx = 0;
+            const tempo = 130;
+            function playNote() {
+                if (!bgPlaying) return;
+                const note = melody[idx % melody.length];
+                if (note > 0) {
+                    const o1 = ax.createOscillator(), g1 = ax.createGain();
+                    o1.connect(g1); g1.connect(ax.destination);
+                    o1.type = 'square'; o1.frequency.setValueAtTime(note, ax.currentTime);
+                    g1.gain.setValueAtTime(.04, ax.currentTime);
+                    g1.gain.exponentialRampToValueAtTime(.001, ax.currentTime + .12);
+                    o1.start(); o1.stop(ax.currentTime + .12);
+                    bgNodes.push(o1);
+                }
+                const bn = bass[idx % bass.length];
+                if (bn > 0) {
+                    const o2 = ax.createOscillator(), g2 = ax.createGain();
+                    o2.connect(g2); g2.connect(ax.destination);
+                    o2.type = 'triangle'; o2.frequency.setValueAtTime(bn, ax.currentTime);
+                    g2.gain.setValueAtTime(.05, ax.currentTime);
+                    g2.gain.exponentialRampToValueAtTime(.001, ax.currentTime + .12);
+                    o2.start(); o2.stop(ax.currentTime + .12);
+                    bgNodes.push(o2);
+                }
+                idx++;
+                bgTimer = setTimeout(playNote, tempo);
+            }
+            playNote();
+        }
+        function stopBgMusic() {
+            bgPlaying = false;
+            if (bgTimer) { clearTimeout(bgTimer); bgTimer = null; }
+            bgNodes.forEach(o => { try { o.stop() } catch (e) { } });
+            bgNodes = [];
+        }
+
+        /* ===== ANSWER CONFETTI ===== */
+        function answerConfetti() {
+            const btn = document.getElementById('showAnsBtn'), r = btn.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const em = ['🎉', '🌟', '⭐', '✨', '💫', '🎊', '❤️', '🥳', '🏆', '💎'];
+            for (let i = 0; i < 14; i++) {
+                const e = document.createElement('span'); e.className = 'fw';
+                e.textContent = em[i % em.length];
+                e.style.cssText = `left:${cx}px;top:${cy}px;font-size:${18 + Math.random() * 14}px;transition:all .9s cubic-bezier(.25,.46,.45,.94);pointer-events:none;z-index:999;`;
+                document.body.appendChild(e);
+                requestAnimationFrame(() => {
+                    const a = (i / 14) * Math.PI * 2, d = 60 + Math.random() * 80;
+                    e.style.transform = `translate(${Math.cos(a) * d}px,${Math.sin(a) * d - 40}px) scale(0) rotate(${Math.random() * 360}deg)`;
+                    e.style.opacity = '0';
+                });
+                setTimeout(() => e.remove(), 1000);
+            }
+        }
+
+        /* ===== SHOW ANSWERS ===== */
+        function showAnswers() {
+            const q = QS[step];
+            const correct = q.opts.find(o => o.c);
+            const btn = document.getElementById('showAnsBtn');
+            btn.textContent = correct.l;
+            btn.classList.add('revealed');
+            btn.onclick = null;
+            sReveal();
+            answerConfetti();
+            setTimeout(() => {
+                step++; moveBny(step, true); sparkle();
+                setTimeout(() => {
+                    if (step >= QS.length) {
+                        step = 6; moveBny(step, true);
+                        setTimeout(() => setPose('celebrate'), 1300);
+                        setTimeout(() => showVic(), 2200);
+                    } else { showQ(step) }
+                }, 1400);
+            }, 2500);
+        }
+
+
+        /* ===== BUNNY ===== */
+        function setPose(p) {
+            const i = document.getElementById('bImg');
+            if (p === 'run') i.src = 'bunny_run.png';
+            else if (p === 'celebrate') i.src = 'bunny_celebrate.png';
+            else i.src = 'bunny_stand.png';
+        }
+
+        function moveBny(idx, anim = true) {
+            const b = document.getElementById('bunny');
+            b.style.left = WP[idx].l + '%'; b.style.top = WP[idx].t + '%';
+            if (anim) { setPose('run'); b.classList.add('hop'); sHop(); setTimeout(() => { b.classList.remove('hop'); setPose('stand') }, 1300) }
+        }
+
+
+
+        /* ===== QUESTION ===== */
+        function showQ(idx) {
+            if (idx >= QS.length) return;
+            const q = QS[idx];
+            document.getElementById('qTx').textContent = q.text;
+            const btn = document.getElementById('showAnsBtn');
+            btn.textContent = 'Hiển thị đáp án';
+            btn.className = 'show-ans-btn';
+            btn.onclick = showAnswers;
+            hideFB();
+        }
+
+        function doAns(o, el) {
+            if (ans) return;
+            if (o.c) {
+                ans = true; el.classList.add('ok');
+                document.querySelectorAll('.ob').forEach(b => b.classList.add('dis'));
+                sOk(); showFB(true);
+                setTimeout(() => {
+                    step++; moveBny(step, true); sparkle();
+                    setTimeout(() => {
+                        hideFB();
+                        if (step >= QS.length) {
+                            step = 5; moveBny(step, true);
+                            setTimeout(() => setPose('celebrate'), 1300);
+                            setTimeout(() => showVic(), 2200);
+                        } else { showQ(step) }
+                    }, 1400);
+                }, 1000);
+            } else {
+                el.classList.add('no'); sNo(); showFB(false);
+                setTimeout(() => { el.classList.remove('no'); hideFB() }, 1400);
+            }
+        }
+
+        function showFB(ok) { const f = document.getElementById('fB'); f.className = 'fb show ' + (ok ? 'gy' : 'ny'); f.textContent = ok ? '🎉 Đúng rồi! Thỏ nhảy qua thôi nào!' : '😊 Chưa đúng rồi, thử lại nhé!' }
+        function hideFB() { document.getElementById('fB').className = 'fb' }
+
+        function sparkle() {
+            const b = document.getElementById('bunny'), r = b.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const em = ['⭐', '✨', '💫', '🌟', '❤️', '🎉'];
+            for (let i = 0; i < 8; i++) {
+                const e = document.createElement('span'); e.className = 'fw';
+                e.textContent = em[i % em.length];
+                e.style.cssText = `left:${cx}px;top:${cy}px;font-size:${14 + Math.random() * 10}px;transition:all .7s cubic-bezier(.25,.46,.45,.94);`;
+                document.body.appendChild(e);
+                requestAnimationFrame(() => { const a = (i / 8) * Math.PI * 2, d = 35 + Math.random() * 35; e.style.transform = `translate(${Math.cos(a) * d}px,${Math.sin(a) * d - 25}px) scale(0)`; e.style.opacity = '0' });
+                setTimeout(() => e.remove(), 800);
+            }
+        }
+
+        /* ===== VICTORY ===== */
+        function showVic() {
+            stopBgMusic();
+            document.getElementById('game').classList.remove('on');
+            document.getElementById('vic').classList.add('on');
+            sWin(); launchFW();
+        }
+        function launchFW() {
+            const em = ['🎆', '🎇', '✨', '🌟', '💎', '⭐', '🎉', '🎊', '💫', '🏆', '❤️', '🌈'];
+            for (let i = 0; i < 45; i++) {
+                setTimeout(() => {
+                    const e = document.createElement('span'); e.className = 'fw';
+                    e.textContent = em[Math.floor(Math.random() * em.length)];
+                    e.style.cssText = `left:${Math.random() * window.innerWidth}px;top:-30px;font-size:${22 + Math.random() * 22}px;`;
+                    document.body.appendChild(e);
+                    const d = 2000 + Math.random() * 2500;
+                    e.animate([{ transform: 'translateY(0) rotate(0)', opacity: 1 }, { transform: `translate(${(Math.random() - .5) * 250}px,${window.innerHeight + 60}px) rotate(${Math.random() * 720 - 360}deg)`, opacity: 0 }], { duration: d, easing: 'ease-out' });
+                    setTimeout(() => e.remove(), d);
+                }, i * 80)
+            }
+        }
+
+        /* ===== FLOW ===== */
+        function startGame() {
+            step = 0; ans = false;
+            document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+            document.getElementById('game').classList.add('on');
+            setPose('stand');
+            const b = document.getElementById('bunny');
+            b.style.transition = 'none'; b.style.left = WP[0].l + '%'; b.style.top = WP[0].t + '%';
+            setTimeout(() => b.style.transition = '', 50);
+            showQ(0);
+            startBgMusic();
+        }
+        function replayGame() { startGame() }
+    </script>
+</body>
+
+</html>

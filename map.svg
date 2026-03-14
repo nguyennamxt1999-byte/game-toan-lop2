@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4AB8F7"/><stop offset="50%" stop-color="#7DD3FC"/><stop offset="100%" stop-color="#BAE6FD"/></linearGradient>
+  <radialGradient id="sun" cx="85%" cy="12%" r="15%"><stop offset="0%" stop-color="#FFF7AE"/><stop offset="40%" stop-color="#FFE082" stop-opacity="0.6"/><stop offset="100%" stop-color="#FFF7AE" stop-opacity="0"/></radialGradient>
+  <linearGradient id="rainbow1" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.3"/><stop offset="20%" stop-color="#FFD93D" stop-opacity="0.25"/><stop offset="40%" stop-color="#6BCB77" stop-opacity="0.25"/><stop offset="60%" stop-color="#4D96FF" stop-opacity="0.25"/><stop offset="80%" stop-color="#9B59B6" stop-opacity="0.25"/><stop offset="100%" stop-color="#FF6B9D" stop-opacity="0.2"/></linearGradient>
+  <linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0284C7"/></linearGradient>
+  <linearGradient id="wd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A0724A"/><stop offset="100%" stop-color="#704B2F"/></linearGradient>
+  <linearGradient id="wp" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7A5230"/><stop offset="50%" stop-color="#8B6340"/><stop offset="100%" stop-color="#7A5230"/></linearGradient>
+  <linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#E6A817"/></linearGradient>
+  <linearGradient id="st" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#B0A090"/><stop offset="100%" stop-color="#807060"/></linearGradient>
+  <radialGradient id="lf1" cx="40%" cy="35%" r="55%"><stop offset="0%" stop-color="#5CBF3A"/><stop offset="100%" stop-color="#2E8B1C"/></radialGradient>
+  <radialGradient id="lf2" cx="40%" cy="35%" r="55%"><stop offset="0%" stop-color="#66CC44"/><stop offset="100%" stop-color="#339922"/></radialGradient>
+  <radialGradient id="lf3" cx="40%" cy="35%" r="55%"><stop offset="0%" stop-color="#48B030"/><stop offset="100%" stop-color="#1E7A10"/></radialGradient>
+  <filter id="gl"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="sh"><feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.3"/></filter>
+</defs>
+
+<!-- SKY -->
+<rect width="1920" height="1080" fill="url(#sky)"/>
+<rect width="1920" height="1080" fill="url(#sun)"/>
+
+<!-- RAINBOW -->
+<path d="M1500,700 Q1550,200 1900,100" fill="none" stroke="url(#rainbow1)" stroke-width="60" opacity="0.5"/>
+<path d="M1510,700 Q1560,210 1910,110" fill="none" stroke="url(#rainbow1)" stroke-width="40" opacity="0.35"/>
+
+<!-- MOUNTAINS -->
+<g opacity="0.25">
+  <path d="M-50,550 L180,250 L410,550Z" fill="#6B8DB5"/>
+  <path d="M250,550 L500,190 L750,550Z" fill="#5A7DA5"/>
+  <path d="M600,550 L850,220 L1100,550Z" fill="#6B8DB5"/>
+  <path d="M950,550 L1200,180 L1450,550Z" fill="#5A7DA5"/>
+  <path d="M1350,550 L1600,230 L1950,550Z" fill="#6B8DB5"/>
+  <!-- Snow caps -->
+  <path d="M180,250 L150,310 L210,310Z" fill="white" opacity="0.6"/>
+  <path d="M500,190 L465,260 L535,260Z" fill="white" opacity="0.6"/>
+  <path d="M1200,180 L1160,255 L1240,255Z" fill="white" opacity="0.6"/>
+</g>
+
+<!-- HILLS (layered) -->
+<path d="M-20,600 Q200,480 450,560 Q700,460 960,540 Q1200,450 1500,530 Q1700,460 1940,550 L1940,1100 L-20,1100Z" fill="#78D64B" opacity="0.6"/>
+<path d="M-20,630 Q250,540 500,610 Q750,530 1000,590 Q1250,510 1500,580 Q1750,510 1940,590 L1940,1100 L-20,1100Z" fill="#5EC439"/>
+<path d="M-20,680 Q300,630 600,670 Q900,620 1200,660 Q1500,610 1940,660 L1940,1100 L-20,1100Z" fill="#4DB330"/>
+<path d="M-20,750 Q400,710 800,740 Q1200,700 1940,740 L1940,1100 L-20,1100Z" fill="#3EA025"/>
+
+<!-- CLOUDS (fluffy) -->
+<g opacity="0.95" filter="url(#sh)">
+  <g transform="translate(200,80)"><ellipse rx="90" ry="45" fill="white"/><ellipse cx="65" cy="-18" rx="70" ry="50" fill="white"/><ellipse cx="130" cy="0" rx="80" ry="42" fill="white"/><ellipse cx="60" cy="18" rx="75" ry="35" fill="white"/></g>
+  <g transform="translate(700,40)"><ellipse rx="100" ry="48" fill="white"/><ellipse cx="80" cy="-22" rx="82" ry="55" fill="white"/><ellipse cx="155" cy="0" rx="90" ry="45" fill="white"/><ellipse cx="70" cy="20" rx="85" ry="38" fill="white"/></g>
+  <g transform="translate(1250,100)"><ellipse rx="75" ry="38" fill="white"/><ellipse cx="58" cy="-14" rx="65" ry="45" fill="white"/><ellipse cx="115" cy="0" rx="70" ry="36" fill="white"/></g>
+</g>
+
+<!-- TREES (detailed) -->
+<!-- Left big tree -->
+<g transform="translate(50,380)"><rect x="-12" y="30" width="24" height="120" rx="6" fill="#6B4226"/><rect x="-8" y="30" width="10" height="120" rx="4" fill="#7A5230" opacity="0.5"/>
+  <ellipse cx="0" cy="-10" rx="65" ry="65" fill="url(#lf1)"/><ellipse cx="-30" cy="15" rx="45" ry="48" fill="url(#lf2)"/><ellipse cx="30" cy="15" rx="45" ry="48" fill="url(#lf3)"/>
+  <ellipse cx="-15" cy="-30" rx="30" ry="25" fill="#6BD848" opacity="0.4"/><ellipse cx="20" cy="-20" rx="25" ry="20" fill="#7FE860" opacity="0.3"/>
+  <!-- Apples! -->
+  <circle cx="-25" cy="20" r="7" fill="#FF4444" stroke="#CC0000" stroke-width="1"/><circle cx="-23" cy="18" r="2" fill="white" opacity="0.5"/>
+  <circle cx="30" cy="0" r="6" fill="#FF4444" stroke="#CC0000" stroke-width="1"/><circle cx="32" cy="-2" r="2" fill="white" opacity="0.5"/>
+</g>
+<!-- Right big tree -->
+<g transform="translate(1860,350)"><rect x="-14" y="30" width="28" height="140" rx="7" fill="#6B4226"/><rect x="-9" y="30" width="12" height="140" rx="5" fill="#7A5230" opacity="0.5"/>
+  <ellipse cx="0" cy="-15" rx="75" ry="72" fill="url(#lf1)"/><ellipse cx="-35" cy="12" rx="50" ry="55" fill="url(#lf2)"/><ellipse cx="35" cy="12" rx="50" ry="55" fill="url(#lf3)"/>
+  <ellipse cx="0" cy="-40" rx="35" ry="28" fill="#6BD848" opacity="0.4"/>
+</g>
+<!-- Small trees -->
+<g transform="translate(300,490)"><rect x="-5" y="0" width="10" height="50" rx="3" fill="#6B4226"/><ellipse cy="-20" rx="32" ry="38" fill="url(#lf2)"/><ellipse cx="-12" cy="-5" rx="22" ry="28" fill="url(#lf3)"/></g>
+<g transform="translate(1650,460)"><rect x="-6" y="0" width="12" height="55" rx="3" fill="#6B4226"/><ellipse cy="-22" rx="35" ry="40" fill="url(#lf1)"/><ellipse cx="15" cy="-5" rx="25" ry="30" fill="url(#lf2)"/></g>
+<!-- Pine trees -->
+<g transform="translate(380,510)"><rect x="-4" y="0" width="8" height="40" rx="2" fill="#5D4037"/><polygon points="0,-50 -22,0 22,0" fill="#2E7D32"/><polygon points="0,-35 -18,5 18,5" fill="#388E3C"/><polygon points="0,-22 -14,8 14,8" fill="#43A047"/></g>
+<g transform="translate(1580,500)"><rect x="-4" y="0" width="8" height="38" rx="2" fill="#5D4037"/><polygon points="0,-48 -20,0 20,0" fill="#2E7D32"/><polygon points="0,-33 -16,5 16,5" fill="#388E3C"/><polygon points="0,-20 -13,7 13,7" fill="#43A047"/></g>
+
+<!-- BUSHES -->
+<ellipse cx="160" cy="650" rx="55" ry="28" fill="#43A047"/><ellipse cx="135" cy="652" rx="40" ry="22" fill="#388E3C"/>
+<ellipse cx="1900" cy="630" rx="50" ry="26" fill="#43A047"/><ellipse cx="1875" cy="632" rx="38" ry="22" fill="#388E3C"/>
+<ellipse cx="500" cy="700" rx="30" ry="16" fill="#4CAF50"/><ellipse cx="1350" cy="650" rx="32" ry="17" fill="#4CAF50"/>
+
+<!-- WINDING PATH -->
+<path d="M140,780 Q220,750 350,780 Q480,820 560,790 Q650,750 770,750 Q890,750 960,780 Q1040,820 1150,790 Q1260,750 1360,730 Q1460,710 1540,690 Q1620,670 1700,710 Q1780,750 1850,730" stroke="#C9A96E" stroke-width="42" fill="none" stroke-linecap="round" opacity="0.85"/>
+<path d="M140,780 Q220,750 350,780 Q480,820 560,790 Q650,750 770,750 Q890,750 960,780 Q1040,820 1150,790 Q1260,750 1360,730 Q1460,710 1540,690 Q1620,670 1700,710 Q1780,750 1850,730" stroke="#B8945A" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.25"/>
+<path d="M155,775 Q230,748 355,775 Q485,813 565,785 Q652,748 770,748 Q890,748 960,775 Q1042,815 1152,785 Q1262,748 1362,728 Q1462,708 1542,688 Q1622,668 1700,708 Q1780,748 1840,730" stroke="white" stroke-width="3.5" fill="none" stroke-dasharray="14,18" opacity="0.6" stroke-linecap="round"/>
+
+<!-- STREAM -->
+<path d="M500,1100 Q560,960 680,880 Q760,830 850,810 Q940,795 1050,805 Q1180,825 1280,860 Q1400,905 1550,890 Q1650,870 1750,910 Q1850,960 1920,1050 L1920,1100Z" fill="url(#w)" opacity="0.8"/>
+<path d="M640,890 Q720,870 800,885" stroke="white" stroke-width="3" fill="none" opacity="0.35" stroke-linecap="round"/>
+<path d="M950,808 Q1010,795 1060,808" stroke="white" stroke-width="2.5" fill="none" opacity="0.3" stroke-linecap="round"/>
+<path d="M1300,865 Q1370,845 1435,862" stroke="white" stroke-width="3" fill="none" opacity="0.35" stroke-linecap="round"/>
+<!-- Water sparkles -->
+<circle cx="750" cy="880" r="3" fill="white" opacity="0.5"><animate attributeName="opacity" values="0.5;0.15;0.5" dur="2s" repeatCount="indefinite"/></circle>
+<circle cx="1000" cy="805" r="3" fill="white" opacity="0.4"><animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.5s" repeatCount="indefinite"/></circle>
+<circle cx="1400" cy="880" r="3" fill="white" opacity="0.45"><animate attributeName="opacity" values="0.45;0.1;0.45" dur="1.8s" repeatCount="indefinite"/></circle>
+
+<!-- ===== FLOWERS (detailed petals) ===== -->
+<!-- Sunflower -->
+<g transform="translate(230,740)"><line x1="0" y1="0" x2="0" y2="25" stroke="#4CAF50" stroke-width="3"/><g><circle cx="6" cy="0" r="5" fill="#FFD93D"/><circle cx="-6" cy="0" r="5" fill="#FFD93D"/><circle cx="0" cy="6" r="5" fill="#FFD93D"/><circle cx="0" cy="-6" r="5" fill="#FFD93D"/><circle cx="4" cy="4" r="5" fill="#FFC107"/><circle cx="-4" cy="-4" r="5" fill="#FFC107"/><circle cx="0" cy="0" r="5" fill="#8D6E63"/></g></g>
+<!-- Tulips -->
+<g transform="translate(660,730)"><line x1="0" y1="5" x2="0" y2="25" stroke="#4CAF50" stroke-width="2.5"/><path d="M0,-8 Q-10,5 0,8 Q10,5 0,-8Z" fill="#FF6B9D"/><ellipse cy="-2" rx="3" ry="4" fill="#FF8FAB" opacity="0.5"/></g>
+<g transform="translate(690,738)"><line x1="0" y1="5" x2="0" y2="22" stroke="#4CAF50" stroke-width="2.5"/><path d="M0,-8 Q-10,5 0,8 Q10,5 0,-8Z" fill="#CE93D8"/><ellipse cy="-2" rx="3" ry="4" fill="#E1BEE7" opacity="0.5"/></g>
+<!-- Daisies -->
+<g transform="translate(470,805)"><circle cx="5" cy="0" r="4" fill="white"/><circle cx="-5" cy="0" r="4" fill="white"/><circle cx="0" cy="5" r="4" fill="white"/><circle cx="0" cy="-5" r="4" fill="white"/><circle cx="3.5" cy="3.5" r="4" fill="white"/><circle cx="-3.5" cy="-3.5" r="4" fill="white"/><circle r="4" fill="#FFD93D"/></g>
+<g transform="translate(1620,680)"><circle cx="4" cy="0" r="3.5" fill="white"/><circle cx="-4" cy="0" r="3.5" fill="white"/><circle cx="0" cy="4" r="3.5" fill="white"/><circle cx="0" cy="-4" r="3.5" fill="white"/><circle r="3.5" fill="#FFD93D"/></g>
+<!-- Rose -->
+<g transform="translate(820,735)"><line x1="0" y1="5" x2="0" y2="22" stroke="#4CAF50" stroke-width="2"/><circle r="8" fill="#E91E63"/><circle r="5" fill="#F06292"/><circle r="2.5" fill="#F48FB1"/></g>
+<!-- More flowers near rock -->
+<g transform="translate(780,740)"><circle cx="4" cy="0" r="4" fill="#FFD93D"/><circle cx="-4" cy="0" r="4" fill="#FFD93D"/><circle cx="0" cy="4" r="4" fill="#FFD93D"/><circle cx="0" cy="-4" r="4" fill="#FFD93D"/><circle r="3.5" fill="#FF8F00"/></g>
+<g transform="translate(920,740)"><line x1="0" y1="3" x2="0" y2="18" stroke="#4CAF50" stroke-width="2"/><path d="M0,-7 Q-8,3 0,7 Q8,3 0,-7Z" fill="#AB47BC"/></g>
+<g transform="translate(950,748)"><line x1="0" y1="3" x2="0" y2="15" stroke="#4CAF50" stroke-width="2"/><path d="M0,-6 Q-7,3 0,6 Q7,3 0,-6Z" fill="#FF7043"/></g>
+
+<!-- ===== MUSHROOMS 🍄 ===== -->
+<g transform="translate(270,770)"><rect x="-4" y="0" width="8" height="14" rx="3" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.5"/><ellipse cy="-2" rx="14" ry="10" fill="#FF5252"/><circle cx="-5" cy="-5" r="2.5" fill="white" opacity="0.8"/><circle cx="5" cy="-3" r="2" fill="white" opacity="0.8"/><circle cx="0" cy="-8" r="1.8" fill="white" opacity="0.7"/></g>
+<g transform="translate(1690,720)"><rect x="-3" y="0" width="6" height="11" rx="2" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.5"/><ellipse cy="-2" rx="11" ry="8" fill="#FF7043"/><circle cx="-3" cy="-4" r="2" fill="white" opacity="0.8"/><circle cx="4" cy="-2" r="1.5" fill="white" opacity="0.7"/></g>
+
+<!-- ===== LANDMARK 1: XUẤT PHÁT ===== -->
+<g transform="translate(190,690)" filter="url(#sh)">
+  <path d="M-22,65 L-24,0 Q-24,-30 0,-35 Q24,-30 24,0 L22,65Z" fill="#9E9E9E" stroke="#757575" stroke-width="2.5"/>
+  <path d="M-18,60 L-20,5 Q-20,-24 0,-28 Q20,-24 20,5 L18,60Z" fill="#BDBDBD"/>
+  <circle cx="0" cy="15" r="10" fill="#E8D5B7" stroke="#8B7355" stroke-width="1.5"/>
+  <line x1="0" y1="7" x2="0" y2="23" stroke="#C62828" stroke-width="2"/><line x1="-8" y1="15" x2="8" y2="15" stroke="#1565C0" stroke-width="2"/>
+</g>
+<!-- Sign -->
+<g transform="translate(180,600)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="90" rx="4" fill="url(#wp)"/><rect x="-62" y="-32" width="124" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="22" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Xuất phát</text></g>
+
+<!-- ===== LANDMARK 2: CẦU GỖ ===== -->
+<g transform="translate(430,790)" filter="url(#sh)">
+  <path d="M-85,32 Q-40,15 0,22 Q40,28 85,18" fill="none" stroke="#38BDF8" stroke-width="32" opacity="0.5" stroke-linecap="round"/>
+  <path d="M-65,30 Q-20,18 25,24 Q65,30 85,20" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+  <rect x="-60" y="-8" width="120" height="18" rx="4" fill="#C19A6B" stroke="#8B6914" stroke-width="2"/>
+  <line x1="-50" y1="-8" x2="-50" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/><line x1="-30" y1="-8" x2="-30" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/><line x1="-10" y1="-8" x2="-10" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/><line x1="10" y1="-8" x2="10" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/><line x1="30" y1="-8" x2="30" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/><line x1="50" y1="-8" x2="50" y2="10" stroke="#8B6914" stroke-width="1.2" opacity="0.6"/>
+  <rect x="-63" y="-38" width="8" height="35" rx="3" fill="#8B6914" stroke="#6B4E10" stroke-width="1.5"/>
+  <rect x="55" y="-38" width="8" height="35" rx="3" fill="#8B6914" stroke="#6B4E10" stroke-width="1.5"/>
+  <rect x="-4" y="-35" width="6" height="30" rx="2" fill="#8B6914" stroke="#6B4E10" stroke-width="1"/>
+  <rect x="-63" y="-40" width="126" height="6" rx="3" fill="#A0784C" stroke="#6B4E10" stroke-width="1.5"/>
+</g>
+<g transform="translate(430,695)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="60" rx="4" fill="url(#wp)"/><rect x="-52" y="-32" width="104" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="22" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Cầu gỗ</text></g>
+
+<!-- ===== LANDMARK 3: TẢNG ĐÁ ===== -->
+<g transform="translate(870,680)" filter="url(#sh)">
+  <ellipse cx="0" cy="12" rx="75" ry="58" fill="#7A9B65" stroke="#5C7F4A" stroke-width="2.5"/>
+  <ellipse cx="-20" cy="-15" rx="22" ry="14" fill="#8ECE6A" opacity="0.5"/>
+  <ellipse cx="18" cy="-25" rx="18" ry="10" fill="#9ADB76" opacity="0.4"/>
+  <ellipse cx="25" cy="8" rx="20" ry="12" fill="#8ECE6A" opacity="0.35"/>
+  <ellipse cx="-10" cy="-20" rx="28" ry="20" fill="white" opacity="0.06"/>
+  <ellipse cx="-85" cy="52" rx="16" ry="11" fill="#8C9E7A" stroke="#6B7F5A" stroke-width="1.5"/>
+  <ellipse cx="90" cy="48" rx="14" ry="9" fill="#8C9E7A" stroke="#6B7F5A" stroke-width="1.5"/>
+  <!-- Snail on rock! 🐌 -->
+  <g transform="translate(35,30)"><ellipse cx="0" cy="3" rx="8" ry="4" fill="#FFCC80"/><circle cx="-2" cy="-2" r="6" fill="#A1887F" stroke="#795548" stroke-width="1"/><path d="M-2,-2 Q0,0 -2,2" fill="none" stroke="#795548" stroke-width="0.8"/><line x1="5" y1="0" x2="10" y2="-5" stroke="#FFCC80" stroke-width="1.2" stroke-linecap="round"/><line x1="7" y1="0" x2="12" y2="-4" stroke="#FFCC80" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="-6" r="1.2" fill="#333"/><circle cx="12" cy="-5" r="1.2" fill="#333"/></g>
+</g>
+<g transform="translate(870,585)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="55" rx="4" fill="url(#wp)"/><rect x="-55" y="-32" width="110" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="22" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Tảng đá</text></g>
+
+<!-- ===== LANDMARK 4: SUỐI NƯỚC ===== -->
+<g transform="translate(1120,835)">
+  <ellipse cx="-35" cy="0" rx="24" ry="15" fill="#9E9E9E" stroke="#757575" stroke-width="2"/><ellipse cx="-35" cy="-3" rx="19" ry="10" fill="#BDBDBD" opacity="0.35"/>
+  <ellipse cx="20" cy="-18" rx="22" ry="13" fill="#8E8E8E" stroke="#6E6E6E" stroke-width="2"/><ellipse cx="20" cy="-21" rx="17" ry="9" fill="#AEAEAE" opacity="0.35"/>
+  <ellipse cx="70" cy="5" rx="20" ry="12" fill="#9E9E9E" stroke="#757575" stroke-width="2"/><ellipse cx="70" cy="2" rx="15" ry="8" fill="#BDBDBD" opacity="0.35"/>
+  <ellipse cx="120" cy="-12" rx="22" ry="14" fill="#8E8E8E" stroke="#6E6E6E" stroke-width="2"/><ellipse cx="120" cy="-15" rx="17" ry="9" fill="#AEAEAE" opacity="0.35"/>
+  <!-- Water sparkles -->
+  <g filter="url(#gl)"><circle cx="-10" cy="8" r="3" fill="#81D4FA" opacity="0.6"><animate attributeName="opacity" values="0.6;0.15;0.6" dur="2s" repeatCount="indefinite"/></circle><circle cx="45" cy="-5" r="2.5" fill="#81D4FA" opacity="0.5"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.3s" repeatCount="indefinite"/></circle><circle cx="95" cy="10" r="3" fill="#81D4FA" opacity="0.55"><animate attributeName="opacity" values="0.55;0.1;0.55" dur="1.7s" repeatCount="indefinite"/></circle></g>
+</g>
+<g transform="translate(1140,710)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="60" rx="4" fill="url(#wp)"/><rect x="-62" y="-32" width="124" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="22" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Suối nước</text></g>
+
+<!-- ===== LANDMARK 5: CỔNG CỔ TÍCH ===== -->
+<g transform="translate(1440,540)" filter="url(#sh)">
+  <rect x="-70" y="-25" width="32" height="175" rx="6" fill="url(#st)" stroke="#605048" stroke-width="2.5"/>
+  <rect x="38" y="-25" width="32" height="175" rx="6" fill="url(#st)" stroke="#605048" stroke-width="2.5"/>
+  <line x1="-70" y1="20" x2="-38" y2="20" stroke="#605048" stroke-width="1" opacity="0.4"/><line x1="-70" y1="60" x2="-38" y2="60" stroke="#605048" stroke-width="1" opacity="0.4"/><line x1="-70" y1="100" x2="-38" y2="100" stroke="#605048" stroke-width="1" opacity="0.4"/>
+  <line x1="38" y1="20" x2="70" y2="20" stroke="#605048" stroke-width="1" opacity="0.4"/><line x1="38" y1="60" x2="70" y2="60" stroke="#605048" stroke-width="1" opacity="0.4"/><line x1="38" y1="100" x2="70" y2="100" stroke="#605048" stroke-width="1" opacity="0.4"/>
+  <path d="M-70,-25 Q-70,-100 0,-110 Q70,-100 70,-25" fill="none" stroke="url(#st)" stroke-width="30" stroke-linecap="round"/>
+  <path d="M-70,-25 Q-70,-100 0,-110 Q70,-100 70,-25" fill="none" stroke="#605048" stroke-width="2.5"/>
+  <!-- Ivy -->
+  <ellipse cx="-50" cy="-55" rx="20" ry="16" fill="#4CAF50" opacity="0.85"/><ellipse cx="-28" cy="-78" rx="18" ry="14" fill="#66BB6A" opacity="0.8"/><ellipse cx="0" cy="-88" rx="16" ry="13" fill="#4CAF50" opacity="0.85"/><ellipse cx="28" cy="-78" rx="18" ry="14" fill="#66BB6A" opacity="0.8"/><ellipse cx="50" cy="-55" rx="20" ry="16" fill="#4CAF50" opacity="0.85"/>
+  <ellipse cx="-60" cy="-32" rx="16" ry="12" fill="#66BB6A" opacity="0.7"/><ellipse cx="60" cy="-32" rx="16" ry="12" fill="#66BB6A" opacity="0.7"/>
+  <!-- Ivy flowers -->
+  <circle cx="-35" cy="-70" r="4" fill="#FF80AB"/><circle cx="15" cy="-85" r="3.5" fill="#FF80AB"/><circle cx="45" cy="-48" r="3" fill="#F48FB1"/>
+  <!-- ✨ Sparkles -->
+  <g filter="url(#gl)">
+    <circle cx="-45" cy="-45" r="4" fill="#FFD700" opacity="0.9"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.5s" repeatCount="indefinite"/><animate attributeName="r" values="4;5;4" dur="1.5s" repeatCount="indefinite"/></circle>
+    <circle cx="35" cy="-65" r="3.5" fill="#FFEB3B" opacity="0.8"><animate attributeName="opacity" values="0.8;0.15;0.8" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="-20" cy="-82" r="3" fill="#FFD700" opacity="0.85"><animate attributeName="opacity" values="0.85;0.2;0.85" dur="1.8s" repeatCount="indefinite"/></circle>
+    <circle cx="55" cy="-28" r="3.5" fill="#FFC107" opacity="0.7"><animate attributeName="opacity" values="0.7;0.15;0.7" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="12" cy="-98" r="4" fill="#FFEB3B" opacity="0.75"><animate attributeName="opacity" values="0.75;0.2;0.75" dur="1.6s" repeatCount="indefinite"/></circle>
+    <circle cx="-65" cy="-10" r="2.5" fill="#FFD700" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/></circle>
+    <circle cx="70" cy="5" r="2.5" fill="#FFC107" opacity="0.65"><animate attributeName="opacity" values="0.65;0.1;0.65" dur="1.9s" repeatCount="indefinite"/></circle>
+  </g>
+</g>
+<g transform="translate(1440,388)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="40" rx="4" fill="url(#wp)"/><rect x="-72" y="-32" width="144" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="21" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Cổng cổ tích</text></g>
+
+<!-- ===== LANDMARK 6: KHO BÁU ===== -->
+<g transform="translate(1770,690)" filter="url(#sh)">
+  <rect x="-45" y="-5" width="90" height="50" rx="6" fill="url(#gd)" stroke="#B8860B" stroke-width="2.5"/>
+  <rect x="-40" y="0" width="80" height="40" rx="4" fill="#E6B800" opacity="0.3"/>
+  <path d="M-47,-5 Q-47,-40 0,-45 Q47,-40 47,-5" fill="#E6B800" stroke="#B8860B" stroke-width="2.5"/>
+  <path d="M-40,-5 Q-40,-32 0,-36 Q40,-32 40,-5" fill="#FFD700"/>
+  <rect x="-10" y="-2" width="20" height="14" rx="4" fill="#B8860B"/><circle cx="0" cy="5" r="4" fill="#8B6914"/>
+  <!-- Gems -->
+  <circle cx="-18" cy="-20" r="10" fill="#E91E63" stroke="#AD1457" stroke-width="1.5"/><ellipse cx="-18" cy="-23" rx="5" ry="3" fill="white" opacity="0.35"/>
+  <circle cx="15" cy="-25" r="9" fill="#2196F3" stroke="#1565C0" stroke-width="1.5"/><ellipse cx="15" cy="-28" rx="4.5" ry="2.5" fill="white" opacity="0.35"/>
+  <circle cx="-3" cy="-28" r="7" fill="#4CAF50" stroke="#2E7D32" stroke-width="1.5"/><ellipse cx="-3" cy="-30" rx="3.5" ry="2" fill="white" opacity="0.3"/>
+  <polygon points="30,-32 34,-48 38,-32" fill="#FFD700" stroke="#FF8F00" stroke-width="1.5"/>
+  <polygon points="-32,-28 -36,-42 -28,-42" fill="#FFD700" stroke="#FF8F00" stroke-width="1.5"/>
+  <!-- Coins -->
+  <ellipse cx="-55" cy="38" rx="12" ry="7" fill="#FFD700" stroke="#B8860B" stroke-width="1.5"/><ellipse cx="-42" cy="43" rx="10" ry="6" fill="#E6B800" stroke="#B8860B" stroke-width="1.2"/>
+  <ellipse cx="52" cy="40" rx="11" ry="7" fill="#FFD700" stroke="#B8860B" stroke-width="1.5"/>
+  <!-- 💎 Glow -->
+  <g filter="url(#gl)">
+    <circle cx="-60" cy="-10" r="4" fill="#FFD700" opacity="0.7"><animate attributeName="opacity" values="0.7;0.15;0.7" dur="1.5s" repeatCount="indefinite"/><animate attributeName="r" values="4;5.5;4" dur="1.5s" repeatCount="indefinite"/></circle>
+    <circle cx="55" cy="-20" r="3.5" fill="#FFEB3B" opacity="0.65"><animate attributeName="opacity" values="0.65;0.1;0.65" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="0" cy="-50" r="4" fill="#FFD700" opacity="0.8"><animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.7s" repeatCount="indefinite"/></circle>
+  </g>
+</g>
+<g transform="translate(1770,600)" filter="url(#sh)"><rect x="-6" y="0" width="12" height="55" rx="4" fill="url(#wp)"/><rect x="-55" y="-32" width="110" height="42" rx="10" fill="url(#wd)" stroke="#5D4037" stroke-width="2.5"/><text x="0" y="-4" text-anchor="middle" font-family="'Nunito',Arial,sans-serif" font-size="22" font-weight="900" fill="white" stroke="#5D4037" stroke-width="0.8">Kho báu</text></g>
+
+<!-- BIRDS -->
+<g opacity="0.55"><path d="M490,200 Q486,195 490,190 Q494,195 498,192" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/><path d="M520,218 Q517,214 520,210 Q523,214 526,211" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round"/></g>
+<g opacity="0.5"><path d="M1280,170 Q1276,165 1280,160 Q1284,165 1288,162" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/><path d="M1310,188 Q1307,184 1310,180 Q1313,184 1316,181" fill="none" stroke="#555" stroke-width="1.6" stroke-linecap="round"/></g>
+
+<!-- BUTTERFLIES 🦋 -->
+<g transform="translate(700,500)" opacity="0.9"><path d="M0,0 Q-14,-12 -10,-24 Q-5,-12 0,0 Q5,-12 10,-24 Q14,-12 0,0" fill="#FF80AB" stroke="#F06292" stroke-width="0.8"/><path d="M0,0 Q-10,8 -8,16 Q-4,8 0,0 Q4,8 8,16 Q10,8 0,0" fill="#F48FB1" stroke="#F06292" stroke-width="0.6"/><line x1="0" y1="-3" x2="0" y2="6" stroke="#444" stroke-width="1.2"/><animateTransform attributeName="transform" type="translate" values="700,500;715,488;705,495;700,500" dur="4s" repeatCount="indefinite"/></g>
+<g transform="translate(1000,570)" opacity="0.85"><path d="M0,0 Q-12,-10 -8,-20 Q-4,-10 0,0 Q4,-10 8,-20 Q12,-10 0,0" fill="#CE93D8" stroke="#AB47BC" stroke-width="0.8"/><path d="M0,0 Q-8,6 -6,13 Q-3,6 0,0 Q3,6 6,13 Q8,6 0,0" fill="#E1BEE7" stroke="#AB47BC" stroke-width="0.6"/><line x1="0" y1="-2" x2="0" y2="5" stroke="#444" stroke-width="1"/><animateTransform attributeName="transform" type="translate" values="1000,570;1012,558;1005,565;1000,570" dur="4.5s" repeatCount="indefinite"/></g>
+
+<!-- BEE 🐝 -->
+<g transform="translate(760,620)" opacity="0.9"><ellipse rx="10" ry="7" fill="#FFD93D" stroke="#F9A825" stroke-width="1"/><line x1="-3" y1="-7" x2="-3" y2="7" stroke="#333" stroke-width="1.5" opacity="0.5"/><line x1="3" y1="-7" x2="3" y2="7" stroke="#333" stroke-width="1.5" opacity="0.5"/><circle cx="10" cy="0" r="2" fill="#333"/><ellipse cx="-2" cy="-9" rx="7" ry="4" fill="white" opacity="0.6" transform="rotate(-20 -2 -9)"/><ellipse cx="4" cy="-9" rx="7" ry="4" fill="white" opacity="0.6" transform="rotate(20 4 -9)"/><animateTransform attributeName="transform" type="translate" values="760,620;775,610;770,625;760,620" dur="3.5s" repeatCount="indefinite"/></g>
+
+<!-- LADYBUG 🐞 -->
+<g transform="translate(600,770)"><ellipse rx="8" ry="6" fill="#F44336" stroke="#C62828" stroke-width="1.2"/><line x1="0" y1="-6" x2="0" y2="6" stroke="#333" stroke-width="1"/><circle cx="0" cy="-6" r="4" fill="#333"/><circle cx="-3" cy="-1" r="1.8" fill="#333"/><circle cx="3" cy="2" r="1.8" fill="#333"/><circle cx="-4" cy="3" r="1.5" fill="#333"/></g>
+
+<!-- GRASS TUFTS -->
+<g stroke="#388E3C" stroke-width="2.5" stroke-linecap="round" opacity="0.55">
+  <line x1="320" y1="800" x2="314" y2="782"/><line x1="326" y1="800" x2="326" y2="780"/><line x1="332" y1="800" x2="338" y2="783"/>
+  <line x1="620" y1="760" x2="614" y2="742"/><line x1="626" y1="760" x2="626" y2="740"/><line x1="632" y1="760" x2="638" y2="743"/>
+  <line x1="1350" y1="720" x2="1344" y2="702"/><line x1="1356" y1="720" x2="1356" y2="700"/><line x1="1362" y1="720" x2="1368" y2="703"/>
+</g>
+
+<!-- DANDELION SEEDS floating ✨ -->
+<g opacity="0.4">
+  <g transform="translate(400,350)"><circle r="2" fill="white"/><line x1="0" y1="2" x2="0" y2="12" stroke="white" stroke-width="0.5"/><animateTransform attributeName="transform" type="translate" values="400,350;410,340;420,345;415,335" dur="6s" repeatCount="indefinite"/></g>
+  <g transform="translate(1100,300)"><circle r="1.5" fill="white"/><line x1="0" y1="1.5" x2="0" y2="10" stroke="white" stroke-width="0.5"/><animateTransform attributeName="transform" type="translate" values="1100,300;1110,290;1115,295;1108,285" dur="7s" repeatCount="indefinite"/></g>
+  <g transform="translate(800,280)"><circle r="1.8" fill="white"/><line x1="0" y1="1.8" x2="0" y2="11" stroke="white" stroke-width="0.5"/><animateTransform attributeName="transform" type="translate" values="800,280;812,268;808,272;815,262" dur="5.5s" repeatCount="indefinite"/></g>
+</g>
+
+</svg>
