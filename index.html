@@ -32,6 +32,67 @@
             display: flex
         }
 
+        /* ===== VIDEO INTRO ===== */
+        #videoIntro {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            z-index: 150;
+        }
+
+        #videoIntro video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .ready-btn {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: linear-gradient(135deg, #FF6B9D, #FF8A5C);
+            border: none;
+            border-radius: 50px;
+            padding: 22px 60px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.7em;
+            font-weight: 900;
+            color: #fff;
+            cursor: pointer;
+            z-index: 160;
+            transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+            box-shadow: 0 6px 24px rgba(255, 107, 157, .5), 0 4px 0 #d9527a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .ready-btn.show {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+            animation: readyPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes readyPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 6px 24px rgba(255, 107, 157, .5), 0 4px 0 #d9527a; }
+            50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 10px 32px rgba(255, 107, 157, .7), 0 4px 0 #d9527a; }
+        }
+
+        .ready-btn:hover {
+            transform: translateX(-50%) scale(1.12);
+            box-shadow: 0 10px 32px rgba(255, 107, 157, .7), 0 4px 0 #d9527a;
+            animation: none;
+        }
+
+        .ready-btn:active {
+            transform: translateX(-50%) scale(0.96);
+        }
+
         /* ===== INTRO ===== */
         #intro {
             flex-direction: column;
@@ -279,53 +340,90 @@
         }
 
         .show-ans-btn {
-            padding: 18px 60px;
-            border: 3px solid transparent;
-            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 50%;
             font-family: 'Nunito', sans-serif;
-            font-size: 4em;
-            font-weight: 800;
+            font-size: 3.5em;
+            font-weight: 900;
             cursor: pointer;
-            background: linear-gradient(135deg, #4ECDC4, #44BFA5);
+            background: linear-gradient(135deg, #FFD93D, #FF6B9D);
             color: #fff;
-            box-shadow: 0 4px 14px rgba(78, 205, 196, .35);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, .4), 0 4px 0 #d9527a;
             text-align: center;
-            transition: background .3s, color .3s, border-color .3s, box-shadow .3s
+            line-height: 100px;
+            padding: 0;
+            transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+            animation: questionPulse 1.5s ease-in-out infinite;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes questionPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 6px 20px rgba(255, 107, 157, .4), 0 4px 0 #d9527a;
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 8px 28px rgba(255, 107, 157, .55), 0 4px 0 #d9527a;
+            }
         }
 
         .show-ans-btn:hover:not(.revealed) {
-            box-shadow: 0 6px 20px rgba(78, 205, 196, .45)
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 28px rgba(255, 107, 157, .55), 0 4px 0 #d9527a;
+            animation: none;
+        }
+
+        .show-ans-btn:active:not(.revealed) {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(255, 107, 157, .3), 0 2px 0 #d9527a;
         }
 
         .show-ans-btn.revealed {
-            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-            color: #2E7D32;
-            border-color: #66BB6A;
+            width: auto;
+            height: auto;
+            min-width: 120px;
+            padding: 16px 50px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #66BB6A, #43A047);
+            color: #fff;
             cursor: default;
-            box-shadow: none;
-            animation: revealPulse .6s ease-out
+            box-shadow: 0 6px 20px rgba(102, 187, 106, .4), 0 4px 0 #2E7D32;
+            animation: revealBounce .8s cubic-bezier(.34, 1.56, .64, 1);
+            line-height: 1.2;
+            font-size: 3.5em;
         }
 
-        @keyframes revealPulse {
+        @keyframes revealBounce {
             0% {
-                transform: scale(1)
+                transform: scale(0.3) rotate(-20deg);
+                opacity: 0;
             }
 
-            30% {
-                transform: scale(1.15)
+            50% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 1;
             }
 
-            60% {
-                transform: scale(0.95)
+            70% {
+                transform: scale(0.9) rotate(-2deg);
             }
 
             100% {
-                transform: scale(1)
+                transform: scale(1) rotate(0deg);
             }
         }
 
         .show-ans-btn.revealed:hover {
-            box-shadow: none
+            box-shadow: 0 6px 20px rgba(102, 187, 106, .4), 0 4px 0 #2E7D32
         }
 
         .os {
@@ -584,21 +682,16 @@
 
 <body>
 
-    <!-- ===== INTRO ===== -->
-    <div class="scr on" id="intro">
-        <div class="icard">
-            <div class="ibny"><img src="bunny_stand.png" alt="Thỏ trắng"></div>
-            <h1 class="ittl">Thỏ ơi <br>Hành trình tìm kho báu</h1>
-            <p class="isub">Cùng Thỏ trắng phiêu lưu nào! 🌟</p>
-            <div class="isty">
-                📖 Thỏ trắng nghe nói có một <strong>kho báu bí ẩn</strong> nằm sâu trong khu rừng cổ tích!<br><br>
-                Trên đường đi, Thỏ phải vượt qua <strong>5 chướng ngại vật</strong>. Các bạn giúp Thỏ trả lời đúng câu
-                hỏi về các đơn vị đo độ dài <strong> mét, đề-xi-mét</strong> nhé!<br><br>
-                🐰 <em>"Các bạn ơi, giúp mình với nhé!"</em>
-            </div>
-            <button class="btn btn-go" onclick="startGame()">🚀 Lên đường thôi!</button>
-        </div>
+    <!-- ===== VIDEO INTRO ===== -->
+    <div class="scr on" id="videoIntro">
+        <video id="introVideo" playsinline>
+            <source src="A_cinematic_animated_childrens_cartoon_scene_set_i_616821b772 (online-video-cutter.com).mp4" type="video/mp4">
+        </video>
+        <button class="ready-btn" id="readyBtn" onclick="skipVideo()">🚀 Sẵn sàng!</button>
     </div>
+
+    <!-- ===== INTRO (hidden, replaced by video) ===== -->
+    <div class="scr" id="intro" style="display:none;"></div>
 
     <!-- ===== GAME ===== -->
     <div class="scr" id="game">
@@ -606,7 +699,7 @@
         <div class="qarea" id="qArea">
             <div class="qc" id="qC">
                 <div class="qtx" id="qTx"></div>
-                <button class="show-ans-btn" id="showAnsBtn" onclick="showAnswers()">Hiển thị đáp án</button>
+                <button class="show-ans-btn" id="showAnsBtn" onclick="showAnswers()">❓</button>
             </div>
             <div class="fb" id="fB"></div>
         </div>
@@ -639,11 +732,10 @@
     <script>
         /* ===== DATA ===== */
         const QS = [
-            { id: 1, title: 'Giúp Thỏ vượt qua cầu gỗ!', text: '1 dm bằng bao nhiêu cm?', il: 'ruler', opts: [{ l: '5 cm', c: false }, { l: '10 cm', c: true }, { l: '100 cm', c: false }] },
-            { id: 2, title: 'Giúp Thỏ nhảy qua suối nước!', text: '5 dm + 8 dm = ?', il: 'wood', opts: [{ l: '11 dm', c: false }, { l: '12 dm', c: false }, { l: '13 dm', c: true }] },
-            { id: 3, title: 'Giúp Thỏ leo qua tảng đá!', text: '1 m bằng bao nhiêu dm?', il: 'rope', opts: [{ l: '10 dm', c: true }, { l: '5 dm', c: false }, { l: '100 dm', c: false }] },
-            { id: 4, title: 'Giúp Thỏ mở cổng cổ tích!', text: '65 m − 30 m = ?', il: 'road', opts: [{ l: '25 m', c: false }, { l: '35 m', c: true }, { l: '45 m', c: false }] },
-            { id: 5, title: 'Giúp Thỏ bước qua cổng cổ tích!', text: '100 cm bằng bao nhiêu m?', il: 'gate', opts: [{ l: '10 m', c: false }, { l: '1 m', c: true }, { l: '1 dm', c: false }] }
+            { id: 1, title: 'Giúp Thỏ vượt qua cầu gỗ!', text: '2 m = ... dm', il: 'ruler', opts: [{ l: '20 dm', c: true }, { l: '200 dm', c: false }, { l: '2 dm', c: false }] },
+            { id: 2, title: 'Giúp Thỏ nhảy qua suối nước!', text: '65 m − 40 m = ... m', il: 'wood', opts: [{ l: '15 m', c: false }, { l: '25 m', c: true }, { l: '35 m', c: false }] },
+            { id: 3, title: 'Giúp Thỏ leo qua tảng đá!', text: '4 m = ... cm', il: 'rope', opts: [{ l: '40 cm', c: false }, { l: '4000 cm', c: false }, { l: '400 cm', c: true }] },
+            { id: 4, title: 'Giúp Thỏ mở cổng cổ tích!', text: '8 dm + 22 dm = ... dm', il: 'road', opts: [{ l: '30 dm', c: true }, { l: '28 dm', c: false }, { l: '32 dm', c: false }] }
         ];
 
         /* Waypoint positions as % of the map image
@@ -654,7 +746,6 @@
             { l: 50, t: 75 },  // Tảng đá (on brown path near rock)
             { l: 62, t: 65 },  // Suối nước (on stepping stones)
             { l: 78, t: 58 },  // Cổng cổ tích (on path near archway)
-            { l: 84, t: 75 },  // Qua cổng cổ tích (after passing the gate)
             { l: 80, t: 87 }   // Kho báu (near treasure chest)
         ];
 
@@ -670,9 +761,61 @@
         function sWin() { [523, 587, 659, 784, 880, 1047].forEach((n, i) => setTimeout(() => tn(n, .25), i * 100)); setTimeout(() => { tn(1047, .4); tn(784, .4, 'sine', .06) }, 700) }
         function sReveal() {
             ea();
-            const melody = [523, 659, 784, 1047, 784, 1047];
-            melody.forEach((f, i) => setTimeout(() => tn(f, .18, 'sine', .1), i * 70));
-            setTimeout(() => { tn(1047, .3, 'sine', .08); tn(784, .3, 'triangle', .05) }, melody.length * 70);
+            // Big victory fanfare melody - loud & fun!
+            const fanfare = [
+                { f: 523, d: .15, dl: 0 },
+                { f: 659, d: .15, dl: 100 },
+                { f: 784, d: .15, dl: 200 },
+                { f: 1047, d: .45, dl: 300 },
+                { f: 784, d: .12, dl: 550 },
+                { f: 880, d: .12, dl: 650 },
+                { f: 1047, d: .5, dl: 750 },
+                { f: 1175, d: .6, dl: 950 },
+                { f: 1319, d: .7, dl: 1150 }
+            ];
+            fanfare.forEach(n => setTimeout(() => tn(n.f, n.d, 'sine', .28), n.dl));
+            // Loud harmony layer
+            setTimeout(() => tn(659, .5, 'triangle', .18), 300);
+            setTimeout(() => tn(784, .5, 'triangle', .18), 750);
+            setTimeout(() => tn(880, .6, 'triangle', .18), 950);
+            setTimeout(() => tn(1047, .7, 'triangle', .15), 1150);
+            // Bass boom for impact
+            setTimeout(() => tn(131, .5, 'sine', .25), 300);
+            setTimeout(() => tn(165, .5, 'sine', .2), 750);
+            setTimeout(() => tn(131, .6, 'sine', .22), 1150);
+            // Extra square wave chords for fullness
+            setTimeout(() => tn(523, .3, 'square', .06), 300);
+            setTimeout(() => tn(659, .3, 'square', .06), 750);
+            setTimeout(() => tn(784, .4, 'square', .06), 1150);
+            // Loud clapping sounds (white noise bursts)
+            function clap(delay) {
+                setTimeout(() => {
+                    const bufSize = ax.sampleRate * 0.05;
+                    const buf = ax.createBuffer(1, bufSize, ax.sampleRate);
+                    const data = buf.getChannelData(0);
+                    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 2.5);
+                    const src = ax.createBufferSource();
+                    src.buffer = buf;
+                    const filt = ax.createBiquadFilter();
+                    filt.type = 'bandpass';
+                    filt.frequency.value = 2500 + Math.random() * 2500;
+                    filt.Q.value = 0.4;
+                    const g = ax.createGain();
+                    g.gain.setValueAtTime(0.35 + Math.random() * 0.15, ax.currentTime);
+                    g.gain.exponentialRampToValueAtTime(0.001, ax.currentTime + 0.08);
+                    src.connect(filt); filt.connect(g); g.connect(ax.destination);
+                    src.start();
+                }, delay);
+            }
+            // More claps, louder and longer pattern
+            const clapTimes = [350, 450, 550, 650, 750, 850, 950, 1050, 1150, 1250, 1350, 1450, 1550, 1650, 1750, 1850];
+            clapTimes.forEach(t => clap(t));
+            // Cheerful rising sparkle notes - louder
+            const sparkle = [1568, 1760, 1976, 2093, 2349, 2637];
+            sparkle.forEach((f, i) => setTimeout(() => tn(f, .12, 'sine', .1), 900 + i * 70));
+            // Fun descending trill at the end
+            const trill = [2093, 1976, 1760, 1568, 1319, 1175, 1047];
+            trill.forEach((f, i) => setTimeout(() => tn(f, .06, 'sine', .07), 1500 + i * 40));
         }
 
         /* ===== BACKGROUND MUSIC ===== */
@@ -763,7 +906,7 @@
                 step++; moveBny(step, true); sparkle();
                 setTimeout(() => {
                     if (step >= QS.length) {
-                        step = 6; moveBny(step, true);
+                        step = 5; moveBny(step, true);
                         setTimeout(() => setPose('celebrate'), 1300);
                         setTimeout(() => showVic(), 2200);
                     } else { showQ(step) }
@@ -794,7 +937,7 @@
             const q = QS[idx];
             document.getElementById('qTx').textContent = q.text;
             const btn = document.getElementById('showAnsBtn');
-            btn.textContent = 'Hiển thị đáp án';
+            btn.textContent = '❓';
             btn.className = 'show-ans-btn';
             btn.onclick = showAnswers;
             hideFB();
@@ -863,6 +1006,25 @@
         }
 
         /* ===== FLOW ===== */
+        // Auto-play the intro video when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            const vid = document.getElementById('introVideo');
+            vid.play().catch(() => {
+                // Autoplay blocked: show click-to-play
+                vid.addEventListener('click', () => vid.play(), { once: true });
+            });
+            vid.addEventListener('ended', () => {
+                document.getElementById('readyBtn').classList.add('show');
+            });
+        });
+
+        function skipVideo() {
+            const vid = document.getElementById('introVideo');
+            vid.pause();
+            document.getElementById('videoIntro').classList.remove('on');
+            startGame();
+        }
+
         function startGame() {
             step = 0; ans = false;
             document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
